@@ -24,6 +24,7 @@ export default {
         text-align: center;
 
         background-color: $accentColor;
+        color: #7b7978;
 
         img {
             width: 80%;
@@ -31,6 +32,7 @@ export default {
 
         h3 {
             margin: 0.5rem 0;
+            color: #FFF;
         }
     }
 
