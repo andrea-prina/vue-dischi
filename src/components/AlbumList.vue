@@ -1,25 +1,42 @@
 <template>
     <div class="flex-wrap">
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
-        <AlbumCard/>
+        <div v-for="(album, index) in albumList" :key="index">{{albumList[index].author}}</div>
     </div>
 </template>
 
 <script>
-import AlbumCard from './AlbumCard.vue'; 
+import AlbumCard from './AlbumCard.vue';
+
+import axios from 'axios';
+
 
 export default {
 
     components : {
         AlbumCard,
+    },
+
+    data : function() {
+
+        return {
+            albumList : [],
+        }
+    },
+
+    methods : {
+        getAlbumInfo(){
+            axios.get("https://flynn.boolean.careers/exercises/api/array/music")
+            .then((result) => {
+                this.albumList = result.data.response;
+                
+            }).catch((err) => {
+                console.warn(err);
+            });
+        }
+    },
+
+    created(){
+        this.getAlbumInfo();
     }
 
 }
