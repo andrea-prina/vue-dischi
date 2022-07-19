@@ -23,6 +23,7 @@ export default {
     main {
         background-color: $backgroundColor;
         height: calc(100vh - 3rem);
+        padding-top: 5rem;
     }
 
     .wrapper {

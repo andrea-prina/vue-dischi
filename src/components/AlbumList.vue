@@ -4,6 +4,12 @@
         <AlbumCard/>
         <AlbumCard/>
         <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
     </div>
 </template>
 
