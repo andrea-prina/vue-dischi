@@ -1,6 +1,7 @@
 <template>
     <div class="flex-wrap">
-        <div v-for="(album, index) in albumList" :key="index">{{albumList[index].author}}</div>
+        <AlbumCard v-for="(album, index) in albumList" :key="index"
+        :albumInfo="albumList[index]"/>
     </div>
 </template>
 

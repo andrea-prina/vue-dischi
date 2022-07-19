@@ -1,15 +1,19 @@
 <template>
     <div class="card">
-        <img src="https://previews.123rf.com/images/niroworld/niroworld1405/niroworld140500052/29004635-vintage-music-record-concept-with-a-red-vinyl-lp-album-disc-and-light-reflection.jpg" alt="">
-        <h3>NOME</h3>
-        <p>Artista</p>
-        <p>Anno</p>
+        <img :src="albumInfo.poster" :alt="albumInfo.title">
+        <h3>{{albumInfo.title}}</h3>
+        <p>{{albumInfo.author}}</p>
+        <p>{{albumInfo.year}}</p>
 
     </div>
 </template>
 
 <script>
 export default {
+
+    props : {
+        albumInfo : Object,
+    },
 
 }
 </script>
@@ -33,6 +37,11 @@ export default {
         h3 {
             margin: 0.5rem 0;
             color: #FFF;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 0.8rem;
         }
     }
 
