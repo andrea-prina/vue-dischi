@@ -1,6 +1,8 @@
 <template>
-    <div>
-        ALBUM LIST
+    <div class="flex-wrap">
+        <AlbumCard/>
+        <AlbumCard/>
+        <AlbumCard/>
         <AlbumCard/>
     </div>
 </template>
@@ -17,6 +19,10 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 
+    .flex-wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
 </style>

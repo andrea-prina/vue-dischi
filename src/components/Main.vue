@@ -1,7 +1,8 @@
 <template>
     <main>
-        MAIN
-        <AlbumList/>
+        <div class="wrapper">
+            <AlbumList/>
+        </div>
     </main>
 </template>
 
@@ -16,6 +17,20 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
+    @import '../assets/styles/variables.scss';
+
+    main {
+        background-color: $backgroundColor;
+        height: calc(100vh - 3rem);
+    }
+
+    .wrapper {
+        width: 60%;
+        min-width: 1000px;
+        margin: 0 auto;
+        border: 1px solid red;
+    }
+
 
 </style>
