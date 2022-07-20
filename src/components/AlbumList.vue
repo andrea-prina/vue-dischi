@@ -1,8 +1,10 @@
 <template>
     <div>
-        <SearchBar
-        :albumsList="albumList"
-        @search="filterAlbumByGenre"/>
+        <div class="flex-wrap">
+            <FilterSelect :topicList="getUniqueTopicValues('genre')" :selectTopic="'Genre'" @search="filterAlbumByTopic"/>
+            <FilterSelect :topicList="getUniqueTopicValues('author')" :selectTopic="'Author'" @search="filterAlbumByTopic"/>
+            
+        </div>
         <div class="flex-wrap">
             <AlbumCard v-for="(album, index) in filteredAlbumList" :key="index"
             :albumInfo="album"/>
@@ -12,7 +14,7 @@
 
 <script>
 import AlbumCard from './AlbumCard.vue';
-import SearchBar from './SearchBar.vue';
+import FilterSelect from './FilterSelect.vue';
 
 import axios from 'axios';
 
@@ -21,7 +23,7 @@ export default {
 
     components : {
         AlbumCard,
-        SearchBar,
+        FilterSelect,
     },
 
     data : function() {
@@ -45,11 +47,25 @@ export default {
             });
         },
 
-        filterAlbumByGenre(needle){
+        getUniqueTopicValues(topic){
+
+            let topicList = [];
+
+            this.albumList.forEach(element => {
+                if (!topicList.includes(element[topic])){
+                    topicList.push(element[topic])
+                }                
+            });
+
+            return topicList;
+
+
+        },
+
+        filterAlbumByTopic(needle){
             if(needle==="all" || needle == null){
                 this.filteredAlbumList = [...this.albumList];
             } else {
-                console.log(needle);
                 this.filteredAlbumList = [...this.albumList].filter( (album) => album.genre === needle);
             }
         }
@@ -66,6 +82,7 @@ export default {
 
     .flex-wrap {
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
     }
 </style>
