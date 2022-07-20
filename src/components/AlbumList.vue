@@ -1,8 +1,8 @@
 <template>
     <div>
         <div class="flex-wrap">
-            <FilterSelect :topicList="getUniqueTopicValues('genre')" :selectTopic="'Genre'" @search="filterAlbumByTopic"/>
-            <FilterSelect :topicList="getUniqueTopicValues('author')" :selectTopic="'Author'" @search="filterAlbumByTopic"/>
+            <FilterSelect :topicList="getUniqueTopicValues('genre')" :selectTopic="'genre'" @search="filterAlbumByTopic"/>
+            <FilterSelect :topicList="getUniqueTopicValues('author')" :selectTopic="'author'" @search="filterAlbumByTopic"/>
             
         </div>
         <div class="flex-wrap">
@@ -62,11 +62,11 @@ export default {
 
         },
 
-        filterAlbumByTopic(needle){
+        filterAlbumByTopic(needle, topic){
             if(needle==="all" || needle == null){
                 this.filteredAlbumList = [...this.albumList];
             } else {
-                this.filteredAlbumList = [...this.albumList].filter( (album) => album.genre === needle);
+                this.filteredAlbumList = [...this.albumList].filter( (album) => album[topic] === needle);
             }
         }
     },

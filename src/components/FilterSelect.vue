@@ -1,7 +1,7 @@
 <template>
-    <select name="genres"
+    <select name="filterTopic"
     v-model="selectedTopic"
-    @change = "$emit('search', selectedTopic)">
+    @change = "$emit('search', selectedTopic, topic)">
         <option value="all">Select {{selectTopic}}</option>
         <option v-for="(option, index) in topicList" :value="option" :key="index">{{option}}</option>
     </select>
@@ -13,6 +13,7 @@ export default {
     data : function(){
         return {
             selectedTopic : "all",
+            topic : this.selectTopic,
         }
     },
 
