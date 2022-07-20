@@ -1,8 +1,8 @@
 <template>
     <div>
-        <SearchBar/>
+        <SearchBar @search="filterAlbumByGenre"/>
         <div class="flex-wrap">
-            <AlbumCard v-for="(album, index) in albumList" :key="index"
+            <AlbumCard v-for="(album, index) in filteredAlbumList" :key="index"
             :albumInfo="album"/>
         </div>
     </div>
@@ -26,18 +26,29 @@ export default {
 
         return {
             albumList : [],
+            filteredAlbumList : [],
+            apiUrlAddress : "https://flynn.boolean.careers/exercises/api/array/music",
         }
     },
 
     methods : {
         getAlbumInfo(){
-            axios.get("https://flynn.boolean.careers/exercises/api/array/music")
+            axios.get(this.apiUrlAddress)
             .then((result) => {
                 this.albumList = result.data.response;
+                this.filteredAlbumList = [...this.albumList];
                 
             }).catch((err) => {
                 console.warn(err);
             });
+        },
+
+        filterAlbumByGenre(needle){
+            if(needle==="" || needle == null){
+                this.filteredAlbumList = [...this.albumList];
+            } else {
+                this.filteredAlbumList = [...this.albumList].filter( (album) => album.genre.toLowerCase().includes(needle));
+            }
         }
     },
 

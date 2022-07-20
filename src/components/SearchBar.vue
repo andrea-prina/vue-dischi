@@ -1,11 +1,25 @@
 <template>
     <div id="search-bar">
-        <input type="text" placeholder="Type the genre and press ENTER to search">
+        <input type="text" placeholder="Type the genre and press ENTER to search"
+        v-model.trim="searchQuery"
+        @keyup.enter="$emit('search', searchQuery)"/>
     </div>
 </template>
 
 <script>
 export default {
+
+    data : function(){
+        return {
+            searchQuery : "",
+        }
+    },
+
+    methods : {
+        log(string){
+            console.log(string);
+        }
+    }
 
 }
 </script>
