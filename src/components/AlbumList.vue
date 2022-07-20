@@ -51,7 +51,7 @@ export default {
 
             let topicList = [];
 
-            this.albumList.forEach(element => {
+            this.filteredAlbumList.forEach(element => {
                 if (!topicList.includes(element[topic])){
                     topicList.push(element[topic])
                 }                
