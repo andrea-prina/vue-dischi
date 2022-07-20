@@ -1,8 +1,15 @@
 <template>
     <div id="search-bar">
-        <input type="text" placeholder="Type the genre and press ENTER to search"
+        <!-- <input type="select" placeholder="Type the genre and press ENTER to search"
         v-model.trim="searchQuery"
-        @keyup.enter="$emit('search', searchQuery)"/>
+        @keyup.enter="$emit('search', searchQuery)"/> -->
+
+        <select name="genres"
+        v-model="selectedGenre"
+        @change = "$emit('search', selectedGenre)">
+            <option value="all">Select a genre</option>
+            <option v-for="(album, index) in albumsList" :value="album.genre" :key="index">{{album.genre}}</option>
+        </select>
     </div>
 </template>
 
@@ -11,7 +18,7 @@ export default {
 
     data : function(){
         return {
-            searchQuery : "",
+            selectedGenre : "all",
         }
     },
 
@@ -19,6 +26,10 @@ export default {
         log(string){
             console.log(string);
         }
+    },
+
+    props : {
+        albumsList : Array,
     }
 
 }
@@ -33,18 +44,14 @@ export default {
         justify-content: center;
         margin-bottom: 2rem;
 
-        input {
+        select {
             color: #FFF;
             background-color: $backgroundColor;
             border: 0;
-
-            &[type="text"]{
-                width: 50%;
-                line-height: 1.5rem;
-                border-bottom: 2px solid $accentColor;
+            width: 30%;
+            border-bottom: 2px solid $accentColor;
             }
 
         }
-    }
 
 </style>

@@ -1,6 +1,8 @@
 <template>
     <div>
-        <SearchBar @search="filterAlbumByGenre"/>
+        <SearchBar
+        :albumsList="albumList"
+        @search="filterAlbumByGenre"/>
         <div class="flex-wrap">
             <AlbumCard v-for="(album, index) in filteredAlbumList" :key="index"
             :albumInfo="album"/>
@@ -44,10 +46,11 @@ export default {
         },
 
         filterAlbumByGenre(needle){
-            if(needle==="" || needle == null){
+            if(needle==="all" || needle == null){
                 this.filteredAlbumList = [...this.albumList];
             } else {
-                this.filteredAlbumList = [...this.albumList].filter( (album) => album.genre.toLowerCase().includes(needle));
+                console.log(needle);
+                this.filteredAlbumList = [...this.albumList].filter( (album) => album.genre === needle);
             }
         }
     },
